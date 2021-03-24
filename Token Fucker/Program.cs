@@ -16,7 +16,7 @@ namespace Token_Fucker
             DiscordSocketClient client = new DiscordSocketClient(new DiscordSocketConfig() { ApiVersion = 7 });
             client.OnLoggedIn += Client_OnLoggedIn;
             #region Token
-            client.Login("ODI0MjQ2NTk3MjIzMTg2NDQy.YFsmxQ.-GBuQWhaG2NzH_Zx-5ob1A7bgsk");
+            client.Login("token here");
             #endregion
             Thread.Sleep(-1);
         }
