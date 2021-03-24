@@ -63,7 +63,7 @@ namespace Token_Fucker
                 Console.WriteLine("Removed relationship with ID " + friendids.User.Id);
             }
 
-            Console.WriteLine("\n\nFinished fucking the account.")
+            Console.WriteLine("\n\nFinished fucking the account.");
         }
     }
 }
