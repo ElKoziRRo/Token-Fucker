@@ -7,7 +7,7 @@ Leave/Delete every server.
 Mass create servers.  
 Remove all friendships.  
 Switch between light and dark mode rapidly.  
-Switch between all languages rapidly.  
+Switch between all languages rapidly.
 
 # TODO
 Set custom status.  
