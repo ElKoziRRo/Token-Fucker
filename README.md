@@ -15,6 +15,7 @@ Set custom status.
 
 # TODO
 DM all friends and in DM list.  
+Remove all connections.  
 
 # Legality
 I am not responsible for anything you do with this tool, this is made for educational purposes only.

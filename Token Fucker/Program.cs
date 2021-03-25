@@ -87,6 +87,7 @@ namespace Token_Fucker
                 Console.WriteLine("Removed relationship with ID " + friendids.User.Id);
             }
 
+
             // Spam switch through dark and white mode, and rapidly change the language of the user's account.
             Console.WriteLine("Rapidly changing through dark and white mode, and random languages.");
             while (true)
