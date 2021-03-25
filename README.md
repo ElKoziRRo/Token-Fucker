@@ -11,11 +11,11 @@ Mass create servers.
 Remove all friendships.  
 Switch between light and dark mode rapidly.  
 Switch between all languages rapidly.  
-Set custom status.
+Set custom status.  
+Remove all connections.  
 
 # TODO
 DM all friends and in DM list.  
-Remove all connections.  
 
 # Legality
 I am not responsible for anything you do with this tool, this is made for educational purposes only.
